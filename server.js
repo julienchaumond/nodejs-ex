@@ -16,9 +16,9 @@ var databaseServiceName = process.env.DATABASE_SERVICE_NAME || 'MONGODBAPPSMONIT
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 var mongoURLLabel = "";
 
-console.log('user : ' + user)
+/*console.log('user : ' + user)
 console.log('password : ' + password)
-console.log('database : ' + database)
+console.log('database : ' + database)*/
 
 if (mongoURL == null && databaseServiceName) 
 {
@@ -110,7 +110,7 @@ var api = new ParseServer({
         production: true
       }
     },
-    serverURL: 'http://'+ip+':'+port+'/'
+    serverURL: 'http://parseappsmonitor-rlxh5327.kmt.orange-labs.fr/'//'http://'+ip+':'+port+'/'
   });
 
 // Serve the Parse API at /parse URL prefix
