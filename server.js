@@ -7,9 +7,13 @@ var ParseServer = require('parse-server').ParseServer;
 
 app.engine('html', require('ejs').renderFile);
 
-console.log(process.env)
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var user = process.env.MONGODB_USER || 'userC5U'
+var password = process.env.MONGODB_PASSWORD || 'YtI7w5uyE00una8G'
+var database = process.env.MONGODB_DATABASE ||  'appsmonitor'
+var adminpassword = process.env.MONGODB_ADMIN_PASSWORD || 'QrQnVy2cCjoVFXoj'
+
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 var mongoURLLabel = "";
 
@@ -38,6 +42,7 @@ var db = null;
 var dbDetails = new Object();
 
 var initDb = function(callback) {
+  console.log(mongoURL)
   if (mongoURL == null) return;
 
   var mongodb = require('mongodb');  
@@ -45,6 +50,7 @@ var initDb = function(callback) {
 
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) {
+      console.log(err)
       callback(err);
       return;
     }
