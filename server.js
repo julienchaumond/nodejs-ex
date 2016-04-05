@@ -9,13 +9,17 @@ app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-var user = process.env.MONGODB_USER || 'userC5U'
-var password = process.env.MONGODB_PASSWORD || 'YtI7w5uyE00una8G'
+var user = process.env.MONGODB_USER || userC5U'
+var password = process.env.MONGODB_PASSWORD || YtI7w5uyE00una8G'
 var database = process.env.MONGODB_DATABASE ||  'appsmonitor'
 var adminpassword = process.env.MONGODB_ADMIN_PASSWORD || 'QrQnVy2cCjoVFXoj'
 
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 var mongoURLLabel = "";
+
+console.log('user : ' + user)
+console.log('password : ' + password)
+console.log('database : ' + database)
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) 
 {
@@ -24,25 +28,25 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME)
   var mongoPort = process.env[mongoServiceName + "_SERVICE_PORT"];
   var mongoUser = process.env.MONGODB_USER
 
-  if (mongoHost && mongoPort && process.env.MONGODB_DATABASE) 
+  if (mongoHost && mongoPort && database) 
   {
     mongoURLLabel = mongoURL = 'mongodb://';
 
-    if (process.env.MONGODB_USER && process.env.MONGODB_PASSWORD) 
+    if (user && password) 
     {
-      mongoURL += process.env.MONGODB_USER + ':' + process.env.MONGODB_PASSWORD + '@';
+      mongoURL += user + ':' + password + '@';
     }
     // Provide UI label that excludes user id and pw
 
-    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + process.env.MONGODB_DATABASE;
-    mongoURL += mongoHost + ':' + mongoPort + '/' + process.env.MONGODB_DATABASE;
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + database;
+    mongoURL += mongoHost + ':' + mongoPort + '/' + database;
   }
 }
 var db = null;
 var dbDetails = new Object();
 
 var initDb = function(callback) {
-  console.log(mongoURL)
+  console.log('MongoURL : '+mongoURL)
   if (mongoURL == null) return;
 
   var mongodb = require('mongodb');  
