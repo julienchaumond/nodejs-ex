@@ -3,6 +3,7 @@ var express = require('express');
 var fs      = require('fs');
 var app     = express();
 var eps     = require('ejs');
+var ParseServer = require('parse-server').ParseServer;
 
 app.engine('html', require('ejs').renderFile);
 
@@ -85,3 +86,33 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on ' + ip + ':' + port);
+
+
+
+var api = new ParseServer({
+    databaseURI: 'mongodb://'+mongoURL,
+    appId: 'W4APPl4ENNM4u8ht1LXy9N9g8OHQFoeM8rQpZh2B',
+    masterKey: 'mNsjphrPGWCIsFMUMYGA2TlaY7bjA3isuuxs0SmR',
+    push: {
+      ios: {
+        pfx: 'certs/AppsMonitorAPNSAdHoc.p12',
+        bundleId: 'com.orange.d4m.AppsMonitor',
+        production: true
+      }
+    },
+    serverURL: 'http://'+process.env.OPENSHIFT_NODEJS_IP+':'+process.env.OPENSHIFT_NODEJS_PORT+'/'
+  });
+
+// Serve the Parse API at /parse URL prefix
+app.use('/parse', api);
+app.use(logger)
+
+var port = process.env.OPENSHIFT_NODEJS_PORT;
+app.listen(port, function() {
+  console.log('parse-server running on port ' + port + '.');
+});
+
+app.post('/parse/push', function() {
+  console.log('sfefsefse');
+  next();
+})
