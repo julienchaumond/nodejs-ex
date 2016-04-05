@@ -84,11 +84,6 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
-app.listen(port, ip);
-console.log('Server running on ' + ip + ':' + port);
-
-
-
 var api = new ParseServer({
     databaseURI: 'mongodb://'+mongoURL,
     appId: 'W4APPl4ENNM4u8ht1LXy9N9g8OHQFoeM8rQpZh2B',
