@@ -7,7 +7,7 @@
       "express": "*",
       "mongodb": "*",
       "ejs": "*",
-      "parse-server": "*"
+      "parse-server": "2.2.2"
   },
   "engine": {
     "node": "*",
