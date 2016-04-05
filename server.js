@@ -9,8 +9,8 @@ app.engine('html', require('ejs').renderFile);
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-var user = process.env.MONGODB_USER || userC5U'
-var password = process.env.MONGODB_PASSWORD || YtI7w5uyE00una8G'
+var user = process.env.MONGODB_USER || 'userC5U'
+var password = process.env.MONGODB_PASSWORD || 'YtI7w5uyE00una8G'
 var database = process.env.MONGODB_DATABASE ||  'appsmonitor'
 var adminpassword = process.env.MONGODB_ADMIN_PASSWORD || 'QrQnVy2cCjoVFXoj'
 
