@@ -100,18 +100,12 @@ var api = new ParseServer({
         production: true
       }
     },
-    serverURL: 'http://'+process.env.OPENSHIFT_NODEJS_IP+':'+process.env.OPENSHIFT_NODEJS_PORT+'/'
+    serverURL: 'http://'+ip+':'+port+'/'
   });
 
 // Serve the Parse API at /parse URL prefix
 app.use('/parse', api);
 
-var port = process.env.OPENSHIFT_NODEJS_PORT;
 app.listen(port, function() {
   console.log('parse-server running on port ' + port + '.');
 });
-
-app.post('/parse/push', function() {
-  console.log('sfefsefse');
-  next();
-})
