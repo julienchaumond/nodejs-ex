@@ -105,7 +105,6 @@ var api = new ParseServer({
 
 // Serve the Parse API at /parse URL prefix
 app.use('/parse', api);
-app.use(logger)
 
 var port = process.env.OPENSHIFT_NODEJS_PORT;
 app.listen(port, function() {
